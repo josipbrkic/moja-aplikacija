@@ -1,5 +1,5 @@
 drop database if exists mojaBaza;
-create database mojaBaza charset utf8;
+create database mojaBaza charset utf8 COLLATE utf8_croatian_ci;
 use mojaBaza;
 
 create table kupac (
@@ -47,10 +47,11 @@ alter table racun add foreign key (proizvod) references proizvod(sifra);
 alter table proizvod add foreign key (kategorija) references kategorija(sifra);
 
 insert into kupac (sifra, email, lozinka, ime, prezime, adresa, telefon) 
-	values 	(null, 	'leon@mail.com', 	'lozinka1', 	'Leon', 	'Brkic', 	'Kolodvorska 434, Osijek', 			0919897969),
-			(null, 	'josip@mail.com', 	'lozinka2',		'Josip',	'Brkic',	'Brkićev arman 100, Feričanci,', 	0915555555),
-			(null, 	'ivana@mail.com', 	'lozinka3',		'Ivana',	'Brkic',	'Ružina 789, Osijek', 				0912345678),
-			(null, 	'ana@mail.com', 	'lozinka4',		'Ana',		'Brkic',	'Dubrovačka 321, Osijek', 			0919999999);
+	values	(null, 	'brkic.josip@gmail.com', 	md5('l'), 	'Josip', 	'Brkić', 	'Dubrovačka 49, Osijek', 			0919897969), 	
+			(null, 	'leon@mail.com', 			md5('lozinka'), 	'Leon', 	'Brkić', 	'Kolodvorska 434, Osijek', 			0919897969),
+			(null, 	'josip@mail.com', 			md5('lozinka'),		'Josip',	'Brkić',	'Brkićev arman 100, Feričanci,', 	0915555555),
+			(null, 	'ivana@mail.com', 			md5('lozinka'),		'Ivana',	'Brkić',	'Ružina 789, Osijek', 				0912345678),
+			(null, 	'ana@mail.com', 			md5('lozinka'),		'Ana',		'Brkić',	'Dubrovačka 321, Osijek', 			0919999999);
 			
 insert into kategorija (sifra, ime, opis)
 	values	(null, 'Juice', '100% svježe cijeđeni sok...'),
@@ -59,16 +60,16 @@ insert into kategorija (sifra, ime, opis)
 			(null, 'Frappcafe', 'Osvježavajuće piće na bazi kave...');
 			
 insert into proizvod (sifra, ime, cijena, opis, slika, kategorija) 
-	values 	(null, 	'Limunada', 	10.00, 	null, 	null, 	1),
-			(null, 	'Naranča', 	10.00, 	null, 	null, 	1),
-			(null, 	'Jabuka', 	12.00, 	null, 	null, 	1),
-			(null, 	'Grejp', 	12.00, 	null, 	null, 	1),
-			(null, 	'Kruška', 	15.00, 	null, 	null, 	1),
-			(null, 	'Banana Shake', 	25.00, 	null, 	null, 	2),
-			(null, 	'Malina Shake', 	25.00, 	null, 	null, 	2),
-			(null, 	'Berry Queen', 	30.00, 	null, 	null, 	3),
-			(null, 	'Aronia Apple', 	30.00, 	null, 	null, 	3),
-			(null, 	'Raspberry Refreshener', 	50.00, 	null, 	null, 	3);
+	values 	(null, 	'Limunada', 	10.00, 	null, "img/voce/limun.jpg", 	1),
+			(null, 	'Naranča', 	10.00, 	null, 	"img/voce/Orange.jpg", 	1),
+			(null, 	'Jabuka', 	12.00, 	null, 	"img/voce/apple.jpg", 	1),
+			(null, 	'Grejp', 	12.00, 	null, 	"img/voce/grejp.jpg", 	1),
+			(null, 	'Kruška', 	15.00, 	null, 	"img/voce/kruska.jpg", 	1),
+			(null, 	'Banana Shake', 	25.00, 	null, 	"img/voce/banane.jpg", 	2),
+			(null, 	'Malina Shake', 	25.00, 	null, 	"img/voce/maline.jpg", 	2),
+			(null, 	'Berry Queen', 	30.00, 	null, 	"img/voce/blueberries.jpg", 	3),
+			(null, 	'Aronia Apple', 	30.00, 	null, 	"img/voce/aronia.jpg", 	3),
+			(null, 	'Strawberry Refreshener', 	50.00, 	null, 	"img/voce/jagode.jpg", 	3);
 			
 insert into dostava (sifra, kupac, adresa, datum)
 	values	(null, 1, 'Dubrovačka 999, Osijek' , '2016-08-29'),
@@ -86,6 +87,8 @@ insert into racun (proizvod, kolicina, cijena, dostava)
 			(1, 1, 12.00,4),
 			(6, 3, 18.00,5),
 			(5, 12, 9.00,6);
+			
+
 
 				
 
