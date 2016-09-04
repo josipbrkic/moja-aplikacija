@@ -1,3 +1,4 @@
+<?php include_once 'konfiguracija.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,61 +11,34 @@
 <body id="page-top">
 	
 	<?php include_once 'predlozak/izbornik_aplikacija.php'; ?>
+	<div class="row visina">
+		<p> </p>
 		
-		<div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                	<?php 
-    						$veza = new PDO('mysql:host=localhost;dbname=mojaBaza', 
-											'edunova',
-											'edunova');
-							 $izraz = $veza->query("select * from proizvod");
-								$izraz->execute();
-								$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
-								
-								
-								foreach ($rezultati as $red) {
-									echo $red->ime . "<br />";
-								}
-	
-	
-    			?>
-               
-             </div>     
-             <div class="col-lg-4 col-sm-6">
-                	<p>ččččćghipčpčć'0
-                		
-                		lttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt</p>
-               
-             </div>     
-             <div class="col-lg-4 col-sm-6">
-                	<p>lttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                		ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt</p>
-               
-             </div>     	
-         </div>       	
-     </div>
+	</div>	
+		
+     
+     <div class="row">
+    			<?php 
+				    	$izraz = $veza->query("select * from proizvod");
+						$izraz->execute();
+						$rezultati=$izraz->fetchAll(PDO::FETCH_OBJ);
+						
+						foreach ($rezultati as $red) :
+							?>
+							
+							<div class="col-sm-6 col-md-4 col-lg-2">
+								<div class="bs-callout">
+									<h4 class="text-center"><?php echo $red->ime ?></h4>
+									<?php echo '<img src="'.$red->slika .'"/ width="200" class="center-block img-responsive" >' ; ?>
+									<p class="text-center"><?php echo $red->cijena ?> kn/komad</p>
+									<a href="#" class="btn btn-default center-block"><span class="glyphicon glyphicon-shopping-cart"></span> Dodaj</a>
+								</div>
+							</div>
+							
+							<?php
+							endforeach;
+						?>
+    			</div>
 	
 	
 	<?php include_once 'predlozak/footer.php'; ?> 
